@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Cascarita - Sistema</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="fotos/logo.jpeg" type="image/png" />
+
+</head>
+<body>
+  <!-- Página de Inicio / Login -->
+  <div id="login-page" class="page active">
+    <div class="login-container">
+      <img src="fotos/logo.jpeg" alt="Logo La Cascarita" class="logo-img" />
+      <form id="login-form">
+        <input type="text" id="usuario" placeholder="Usuario" required />
+        <input type="password" id="contrasena" placeholder="Contraseña" required />
+        <button type="submit">Iniciar Sesión</button>
+        <p id="error-msg" style="color: red; display: none;">Usuario o contraseña incorrectos.</p>
+        <p><a href="#">¿Olvidó su contraseña?</a></p>
+        </form>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboard" class="page">
+    <aside>
+      <img src="fotos/logo.jpeg" alt="Logo lateral" class="logo-img-sidebar" />
+      <ul>
+        <li onclick="mostrarModulo('inventario')">📦 Inventario</li>
+        <li onclick="mostrarModulo('compras')">🛒 Compras</li>
+        <li onclick="mostrarModulo('reportes')">📈 Reportes</li>
+        <li onclick="mostrarModulo('cocina')">👨‍🍳 Cocina</li>
+        <li onclick="cerrarSesion()">🚪 Cerrar Sesión</li>
+      </ul>
+    </aside>
+    <main>
+      <h2 id="modulo-titulo">Bienvenido</h2>
+      <section id="modulo-contenido">
+        <p>Seleccione un módulo del menú lateral para comenzar.</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
