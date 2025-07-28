@@ -136,8 +136,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Login simple ---
   const loginForm = document.getElementById('login-form');
   const errorMsg = document.getElementById('error-msg');
+
+  // Mostrar u ocultar pantallas según sesión guardada
   const loginPage = document.getElementById('login-page');
   const dashboard = document.getElementById('dashboard');
+  const estaLogueado = localStorage.getItem('logueado') === 'true';
+
+  if (estaLogueado) {
+    loginPage.style.display = 'none';
+    dashboard.style.display = 'flex';
+    cargarModulo('inicio');
+  }
 
   if (loginForm) {
     loginForm.addEventListener('submit', e => {
@@ -146,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const contrasena = document.getElementById('contrasena').value.trim();
 
       if (usuario === 'admin' && contrasena === 'admin') {
+        localStorage.setItem('logueado', 'true'); // Guardar sesión
         loginPage.style.display = 'none';
         dashboard.style.display = 'flex';
         cargarModulo('inicio');
@@ -156,6 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.getElementById('cerrar-sesion')?.addEventListener('click', () => {
+    localStorage.removeItem('logueado'); // Borrar sesión
     loginPage.style.display = 'block';
     dashboard.style.display = 'none';
     loginForm.reset();
@@ -227,7 +238,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const productoSelect = document.getElementById('comp-producto');
     const feedback = document.getElementById('comp-feedback');
 
-    // Actualiza placeholder y label de cantidad con unidad
     function actualizarLabelCantidad() {
       const producto = productoSelect.value;
       const unidad = unidadesProductos[producto] || "unidades";
@@ -414,6 +424,6 @@ document.addEventListener('DOMContentLoaded', () => {
     actualizarLabelCantidad();
   }
 
-  // Carga inicial (si está logueado)
+  // No cargar módulo al inicio para evitar problemas (o descomentar si quieres)
   // cargarModulo('inicio');
 });
